@@ -5,6 +5,7 @@ import { ExceptionFilter } from "./errors/exception-filter.js";
 import { ILogger } from "./logger/logger-interface.js";
 import { LoggerService } from "./logger/logger-service.js";
 import { INJECT_TYPES } from "./types.js";
+import { IUserController } from "./users/user-controller-interface.js";
 import { UserController } from "./users/user-controller.js";
 
 /*

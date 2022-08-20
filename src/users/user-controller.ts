@@ -4,9 +4,10 @@ import { BaseController } from "../common/base-controller.js";
 import { ILogger } from "../logger/logger-interface.js";
 import { INJECT_TYPES } from "../types.js";
 import "reflect-metadata";
+import { IUserController } from "./user-controller-interface.js";
 
 @injectable()
-export class UserController extends BaseController {
+export class UserController extends BaseController implements IUserController {
   constructor(@inject(INJECT_TYPES.ILogger) private loggerService: ILogger) {
     super(loggerService);
 

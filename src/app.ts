@@ -6,6 +6,7 @@ import { ILogger } from "./logger/logger-interface.js";
 import { INJECT_TYPES } from "./types.js";
 import { UserController } from "./users/user-controller.js";
 import "reflect-metadata";
+import { IUserController } from "./users/user-controller-interface.js";
 
 @injectable()
 export class App {
@@ -15,7 +16,8 @@ export class App {
 
   constructor(
     @inject(INJECT_TYPES.ILogger) private logger: ILogger,
-    @inject(INJECT_TYPES.UserController) private userController: UserController,
+    @inject(INJECT_TYPES.IUserController)
+    private userController: IUserController,
     @inject(INJECT_TYPES.IExceptionFilter)
     private exceptionFilter: IExceptionFilter,
   ) {
