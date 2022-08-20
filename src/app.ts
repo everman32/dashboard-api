@@ -4,7 +4,6 @@ import { inject, injectable } from "inversify";
 import { IExceptionFilter } from "./errors/exception-filter-interface.js";
 import { ILogger } from "./logger/logger-interface.js";
 import { INJECT_TYPES } from "./types.js";
-import { UserController } from "./users/user-controller.js";
 import "reflect-metadata";
 import { IUserController } from "./users/user-controller-interface.js";
 
@@ -25,15 +24,15 @@ export class App {
     this.port = 8000;
   }
 
-  useRoutes() {
+  useRoutes(): void {
     this.app.use("/users", this.userController.router);
   }
 
-  useExceptionFilters() {
+  useExceptionFilters(): void {
     this.app.use(this.exceptionFilter.catch.bind(this.exceptionFilter));
   }
 
-  public async init() {
+  public async init(): Promise<void> {
     this.useRoutes();
     this.useExceptionFilters();
     this.server = this.app.listen(this.port);

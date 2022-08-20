@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { inject, injectable } from "inversify";
 import { ILogger } from "../logger/logger-interface.js";
 import { INJECT_TYPES } from "../types.js";
@@ -10,7 +10,7 @@ import "reflect-metadata";
 export class ExceptionFilter implements IExceptionFilter {
   constructor(@inject(INJECT_TYPES.ILogger) private logger: ILogger) {}
 
-  catch(err: Error | HTTPError, req: Request, res: Response) {
+  catch(err: Error | HTTPError, req: Request, res: Response): void {
     if (err instanceof HTTPError) {
       this.logger.error(
         `[${err.context}] Error ${err.statusCode}: ${err.message}`,
