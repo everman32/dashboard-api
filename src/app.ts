@@ -7,6 +7,7 @@ import { INJECT_TYPES } from "./types.js";
 import "reflect-metadata";
 import { IUserController } from "./users/user-controller-interface.js";
 import pkg from "body-parser";
+import { DatabaseService } from "./database/database-service.js";
 const { json } = pkg;
 
 @injectable()
@@ -19,6 +20,8 @@ export class App {
     @inject(INJECT_TYPES.ILogger) private logger: ILogger,
     @inject(INJECT_TYPES.IUserController)
     private userController: IUserController,
+    @inject(INJECT_TYPES.DatabaseService)
+    private databaseService: DatabaseService,
     @inject(INJECT_TYPES.IExceptionFilter)
     private exceptionFilter: IExceptionFilter,
   ) {
@@ -42,6 +45,7 @@ export class App {
     this.useMiddlewares();
     this.useRoutes();
     this.useExceptionFilters();
+    await this.databaseService.connect();
     this.server = this.app.listen(this.port);
     this.logger.log(`Server is running at port ${this.port}`);
   }

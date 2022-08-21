@@ -2,6 +2,7 @@ import { Container, ContainerModule, interfaces } from "inversify";
 import { App } from "./app.js";
 import { IConfigService } from "./config/config-service-interface.js";
 import { ConfigService } from "./config/config-service.js";
+import { DatabaseService } from "./database/database-service.js";
 import { IExceptionFilter } from "./errors/exception-filter-interface.js";
 import { ExceptionFilter } from "./errors/exception-filter.js";
 import { ILogger } from "./logger/logger-interface.js";
@@ -22,6 +23,9 @@ export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
     .inSingletonScope();
   bind<IUserService>(INJECT_TYPES.IUserService)
     .to(UserService)
+    .inSingletonScope();
+  bind<DatabaseService>(INJECT_TYPES.DatabaseService)
+    .to(DatabaseService)
     .inSingletonScope();
   bind<IConfigService>(INJECT_TYPES.IConfigService)
     .to(ConfigService)
