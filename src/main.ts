@@ -13,7 +13,18 @@ import { IUserService } from "./users/user-service-interface.js";
 import { UserService } from "./users/user-service.js";
 
 export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
+  bind<ILogger>(INJECT_TYPES.ILogger).to(LoggerService).inSingletonScope();
+  bind<IExceptionFilter>(INJECT_TYPES.IExceptionFilter)
+    .to(ExceptionFilter)
+    .inSingletonScope();
+  bind<IUserController>(INJECT_TYPES.IUserController)
+    .to(UserController)
+    .inSingletonScope();
+  bind<IUserService>(INJECT_TYPES.IUserService)
+    .to(UserService)
+    .inSingletonScope();
   bind<IConfigService>(INJECT_TYPES.IConfigService).to(ConfigService);
+  bind<App>(INJECT_TYPES.App).to(App).inSingletonScope();
 });
 
 export interface IBootstrapReturn {
