@@ -4,4 +4,5 @@ export const INJECT_TYPES = {
   IUserController: Symbol.for("IUserController"),
   IUserService: Symbol.for("IUserService"),
   IExceptionFilter: Symbol.for("IExceptionFilter"),
+  IConfigService: Symbol.for("IConfigService"),
 };
