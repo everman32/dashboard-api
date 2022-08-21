@@ -5,6 +5,8 @@ import { ILogger } from "../logger/logger-interface.js";
 import { INJECT_TYPES } from "../types.js";
 import "reflect-metadata";
 import { IUserController } from "./user-controller-interface.js";
+import { UserRegisterDto } from "./dto/user-register-dto.js";
+import { UserLoginDto } from "./dto/user-login-dto.js";
 
 @injectable()
 export class UserController extends BaseController implements IUserController {
@@ -17,11 +19,19 @@ export class UserController extends BaseController implements IUserController {
     ]);
   }
 
-  login(req: Request, res: Response, next: NextFunction): void {
+  login(
+    req: Request<{}, {}, UserLoginDto>,
+    res: Response,
+    next: NextFunction,
+  ): void {
     this.ok(res, "login");
   }
 
-  register(req: Request, res: Response, next: NextFunction): void {
+  register(
+    req: Request<{}, {}, UserRegisterDto>,
+    res: Response,
+    next: NextFunction,
+  ): void {
     this.ok(res, "register");
   }
 }
