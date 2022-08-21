@@ -6,6 +6,8 @@ import { ILogger } from "./logger/logger-interface.js";
 import { INJECT_TYPES } from "./types.js";
 import "reflect-metadata";
 import { IUserController } from "./users/user-controller-interface.js";
+import pkg from "body-parser";
+const { json } = pkg;
 
 @injectable()
 export class App {
@@ -28,11 +30,16 @@ export class App {
     this.app.use("/users", this.userController.router);
   }
 
+  useMiddlewares(): void {
+    this.app.use(json());
+  }
+
   useExceptionFilters(): void {
     this.app.use(this.exceptionFilter.catch.bind(this.exceptionFilter));
   }
 
   public async init(): Promise<void> {
+    this.useMiddlewares();
     this.useRoutes();
     this.useExceptionFilters();
     this.server = this.app.listen(this.port);
