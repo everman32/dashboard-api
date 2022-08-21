@@ -23,7 +23,9 @@ export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
   bind<IUserService>(INJECT_TYPES.IUserService)
     .to(UserService)
     .inSingletonScope();
-  bind<IConfigService>(INJECT_TYPES.IConfigService).to(ConfigService);
+  bind<IConfigService>(INJECT_TYPES.IConfigService)
+    .to(ConfigService)
+    .inSingletonScope();
   bind<App>(INJECT_TYPES.App).to(App).inSingletonScope();
 });
 
