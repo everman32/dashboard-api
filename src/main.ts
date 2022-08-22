@@ -10,6 +10,8 @@ import { LoggerService } from "./logger/logger-service.js";
 import { INJECT_TYPES } from "./types.js";
 import { IUserController } from "./users/user-controller-interface.js";
 import { UserController } from "./users/user-controller.js";
+import { IUserRepository } from "./users/user-repository-interface.js";
+import { UserRepository } from "./users/user-repository.js";
 import { IUserService } from "./users/user-service-interface.js";
 import { UserService } from "./users/user-service.js";
 
@@ -23,6 +25,9 @@ export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
     .inSingletonScope();
   bind<IUserService>(INJECT_TYPES.IUserService)
     .to(UserService)
+    .inSingletonScope();
+  bind<IUserRepository>(INJECT_TYPES.IUserRepository)
+    .to(UserRepository)
     .inSingletonScope();
   bind<DatabaseService>(INJECT_TYPES.DatabaseService)
     .to(DatabaseService)
