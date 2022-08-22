@@ -1,3 +1,4 @@
+import { UserModel } from "@prisma/client";
 import { inject, injectable } from "inversify";
 import { IConfigService } from "../config/config-service-interface";
 import { INJECT_TYPES } from "../types.js";
@@ -16,7 +17,7 @@ export class UserService implements IUserService {
     email,
     name,
     password,
-  }: UserRegisterDto): Promise<User | null> {
+  }: UserRegisterDto): Promise<UserModel | null> {
     const newUser = new User(email, name);
     const salt = this.configService.get("SALT");
     await newUser.setPassword(password, Number(salt));
