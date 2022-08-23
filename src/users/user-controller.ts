@@ -11,6 +11,7 @@ import { IUserService } from "./user-service-interface.js";
 import { HTTPError } from "../errors/http-error.js";
 import { ValidateMiddleware } from "../common/validate-middleware.js";
 import { IConfigService } from "../config/config-service-interface.js";
+import { AuthGuard } from "../common/auth-guard.js";
 import pkg from "jsonwebtoken";
 const { sign } = pkg;
 
@@ -40,6 +41,7 @@ export class UserController extends BaseController implements IUserController {
         path: "/info",
         method: "get",
         func: this.info,
+        middlewares: [new AuthGuard()],
       },
     ]);
   }
