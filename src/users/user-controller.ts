@@ -30,7 +30,7 @@ export class UserController extends BaseController implements IUserController {
         path: "/login",
         method: "post",
         func: this.login,
-      { path: "/login", method: "post", func: this.login },
+        middlewares: [new ValidateMiddleware(UserLoginDto)],
       },
     ]);
   }
