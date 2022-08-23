@@ -10,12 +10,16 @@ import { UserLoginDto } from "./dto/user-login-dto.js";
 import { IUserService } from "./user-service-interface.js";
 import { HTTPError } from "../errors/http-error.js";
 import { ValidateMiddleware } from "../common/validate-middleware.js";
+import { IConfigService } from "../config/config-service-interface.js";
+import pkg from "jsonwebtoken";
+const { sign } = pkg;
 
 @injectable()
 export class UserController extends BaseController implements IUserController {
   constructor(
     @inject(INJECT_TYPES.ILogger) private loggerService: ILogger,
     @inject(INJECT_TYPES.IUserService) private userService: IUserService,
+    @inject(INJECT_TYPES.IConfigService) private configService: IConfigService,
   ) {
     super(loggerService);
 
@@ -44,7 +48,11 @@ export class UserController extends BaseController implements IUserController {
     if (!result) {
       return next(new HTTPError(401, "Authorization error"));
     }
-    this.ok(res, {});
+    const jwt = await this.signJWT(
+      req.body.email,
+      this.configService.get("SECRET"),
+    );
+    this.ok(res, { jwt });
   }
 
   async register(
@@ -57,6 +65,24 @@ export class UserController extends BaseController implements IUserController {
     if (!result) {
       return next(new HTTPError(422, "This user already exists"));
     }
-    this.ok(res, { email: result.email });
+  private signJWT(email: string, secret: string): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      sign(
+        {
+          email,
+          iat: Math.floor(Date.now() / 1000),
+        },
+        secret,
+        {
+          algorithm: "HS256",
+        },
+        (err, token) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(token as string);
+        },
+      );
+    });
   }
 }
