@@ -5,12 +5,15 @@ import { INJECT_TYPES } from "../types.js";
 import { UserLoginDto } from "./dto/user-login-dto";
 import { UserRegisterDto } from "./dto/user-register-dto";
 import { User } from "./user-entity.js";
+import { IUserRepository } from "./user-repository-interface";
 import { IUserService } from "./user-service-interface";
 
 @injectable()
 export class UserService implements IUserService {
   constructor(
     @inject(INJECT_TYPES.IConfigService) private configService: IConfigService,
+    @inject(INJECT_TYPES.IUserRepository)
+    private userRepository: IUserRepository,
   ) {}
 
   async createUser({
@@ -21,10 +24,14 @@ export class UserService implements IUserService {
     const newUser = new User(email, name);
     const salt = this.configService.get("SALT");
     await newUser.setPassword(password, Number(salt));
+
+    const existedUser = await this.userRepository.find(email);
+    if (existedUser) {
     return null;
   }
 
-  async validateUser(dto: UserLoginDto): Promise<boolean> {
-    return true;
+    return this.userRepository.create(newUser);
+  }
+
   }
 }
