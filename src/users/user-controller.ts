@@ -36,6 +36,11 @@ export class UserController extends BaseController implements IUserController {
         func: this.login,
         middlewares: [new ValidateMiddleware(UserLoginDto)],
       },
+      {
+        path: "/info",
+        method: "get",
+        func: this.info,
+      },
     ]);
   }
 
@@ -67,6 +72,16 @@ export class UserController extends BaseController implements IUserController {
     }
     this.ok(res, { email: result.email, id: result.id });
   }
+
+  async info(
+    { user }: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
+    const userInfo = await this.userService.getUserInfo(user);
+    this.ok(res, { email: userInfo?.email, id: userInfo?.id });
+  }
+
   private signJWT(email: string, secret: string): Promise<string> {
     return new Promise<string>((resolve, reject) => {
       sign(
