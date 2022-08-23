@@ -26,7 +26,12 @@ export class UserController extends BaseController implements IUserController {
         func: this.register,
         middlewares: [new ValidateMiddleware(UserRegisterDto)],
       },
+      {
+        path: "/login",
+        method: "post",
+        func: this.login,
       { path: "/login", method: "post", func: this.login },
+      },
     ]);
   }
 
