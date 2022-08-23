@@ -8,6 +8,8 @@ import "reflect-metadata";
 import { IUserController } from "./users/user-controller-interface.js";
 import pkg from "body-parser";
 import { DatabaseService } from "./database/database-service.js";
+import { AuthMiddleware } from "./common/auth-middleware.js";
+import { IConfigService } from "./config/config-service-interface.js";
 const { json } = pkg;
 
 @injectable()
@@ -24,6 +26,8 @@ export class App {
     private databaseService: DatabaseService,
     @inject(INJECT_TYPES.IExceptionFilter)
     private exceptionFilter: IExceptionFilter,
+    @inject(INJECT_TYPES.IConfigService)
+    private configService: IConfigService,
   ) {
     this.app = e();
     this.port = 8000;
@@ -35,6 +39,8 @@ export class App {
 
   useMiddlewares(): void {
     this.app.use(json());
+    const authMiddleware = new AuthMiddleware(this.configService.get("SECRET"));
+    this.app.use(authMiddleware.execute.bind(authMiddleware));
   }
 
   useExceptionFilters(): void {
