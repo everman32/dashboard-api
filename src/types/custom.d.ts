@@ -3,9 +3,3 @@ declare namespace Express {
     user: string;
   }
 }
-
-declare namespace jsonwebtoken {
-  export interface JWTPayload {
-    email: string;
-  }
-}

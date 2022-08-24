@@ -1,5 +1,4 @@
-import pkg from "bcryptjs";
-const { hash, compare } = pkg;
+import { hash, compare } from "bcryptjs";
 
 export class User {
   private _password: string;

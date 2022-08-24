@@ -1,19 +1,17 @@
 import { NextFunction, Request, Response } from "express";
 import { inject, injectable } from "inversify";
-import { BaseController } from "../common/base-controller.js";
-import { ILogger } from "../logger/logger-interface.js";
-import { INJECT_TYPES } from "../types.js";
-import "reflect-metadata";
-import { IUserController } from "./user-controller-interface.js";
-import { UserRegisterDto } from "./dto/user-register-dto.js";
-import { UserLoginDto } from "./dto/user-login-dto.js";
-import { IUserService } from "./user-service-interface.js";
-import { HTTPError } from "../errors/http-error.js";
-import { ValidateMiddleware } from "../common/validate-middleware.js";
-import { IConfigService } from "../config/config-service-interface.js";
-import { AuthGuard } from "../common/auth-guard.js";
-import pkg from "jsonwebtoken";
-const { sign } = pkg;
+import { BaseController } from "../common/base-controller";
+import { ILogger } from "../logger/logger-interface";
+import { INJECT_TYPES } from "../types";
+import { IUserController } from "./user-controller-interface";
+import { UserRegisterDto } from "./dto/user-register-dto";
+import { UserLoginDto } from "./dto/user-login-dto";
+import { IUserService } from "./user-service-interface";
+import { HTTPError } from "../errors/http-error";
+import { ValidateMiddleware } from "../common/validate-middleware";
+import { IConfigService } from "../config/config-service-interface";
+import { AuthGuard } from "../common/auth-guard";
+import { sign } from "jsonwebtoken";
 
 @injectable()
 export class UserController extends BaseController implements IUserController {

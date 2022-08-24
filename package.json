@@ -10,7 +10,7 @@
     }
   },
   "main": "%npm_package_config_start%",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "build": "tsc",
     "start": "npm run build && node %npm_package_config_start%",

@@ -1,16 +1,15 @@
 import e, { Express } from "express";
 import { Server } from "http";
 import { inject, injectable } from "inversify";
-import { IExceptionFilter } from "./errors/exception-filter-interface.js";
-import { ILogger } from "./logger/logger-interface.js";
-import { INJECT_TYPES } from "./types.js";
 import "reflect-metadata";
-import { IUserController } from "./users/user-controller-interface.js";
-import pkg from "body-parser";
-import { DatabaseService } from "./database/database-service.js";
-import { AuthMiddleware } from "./common/auth-middleware.js";
-import { IConfigService } from "./config/config-service-interface.js";
-const { json } = pkg;
+import { IExceptionFilter } from "./errors/exception-filter-interface";
+import { ILogger } from "./logger/logger-interface";
+import { INJECT_TYPES } from "./types";
+import { IUserController } from "./users/user-controller-interface";
+import { DatabaseService } from "./database/database-service";
+import { AuthMiddleware } from "./common/auth-middleware";
+import { IConfigService } from "./config/config-service-interface";
+import { json } from "body-parser";
 
 @injectable()
 export class App {

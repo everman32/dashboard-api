@@ -1,19 +1,19 @@
 import { Container, ContainerModule, interfaces } from "inversify";
-import { App } from "./app.js";
-import { IConfigService } from "./config/config-service-interface.js";
-import { ConfigService } from "./config/config-service.js";
-import { DatabaseService } from "./database/database-service.js";
-import { IExceptionFilter } from "./errors/exception-filter-interface.js";
-import { ExceptionFilter } from "./errors/exception-filter.js";
-import { ILogger } from "./logger/logger-interface.js";
-import { LoggerService } from "./logger/logger-service.js";
-import { INJECT_TYPES } from "./types.js";
-import { IUserController } from "./users/user-controller-interface.js";
-import { UserController } from "./users/user-controller.js";
-import { IUserRepository } from "./users/user-repository-interface.js";
-import { UserRepository } from "./users/user-repository.js";
-import { IUserService } from "./users/user-service-interface.js";
-import { UserService } from "./users/user-service.js";
+import { App } from "./app";
+import { IConfigService } from "./config/config-service-interface";
+import { ConfigService } from "./config/config-service";
+import { DatabaseService } from "./database/database-service";
+import { IExceptionFilter } from "./errors/exception-filter-interface";
+import { ExceptionFilter } from "./errors/exception-filter";
+import { ILogger } from "./logger/logger-interface";
+import { LoggerService } from "./logger/logger-service";
+import { INJECT_TYPES } from "./types";
+import { IUserController } from "./users/user-controller-interface";
+import { UserController } from "./users/user-controller";
+import { IUserRepository } from "./users/user-repository-interface";
+import { UserRepository } from "./users/user-repository";
+import { IUserService } from "./users/user-service-interface";
+import { UserService } from "./users/user-service";
 
 export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
   bind<ILogger>(INJECT_TYPES.ILogger).to(LoggerService).inSingletonScope();

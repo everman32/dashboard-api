@@ -1,7 +1,6 @@
-import { Request, Response, NextFunction } from "express-serve-static-core";
+import { Request, Response, NextFunction } from "express";
 import { IMiddleware } from "./middleware-interface";
-import pkg from "jsonwebtoken";
-const { verify } = pkg as any;
+import { verify } from "jsonwebtoken";
 
 export class AuthMiddleware implements IMiddleware {
   constructor(private secret: string) {}
@@ -11,7 +10,7 @@ export class AuthMiddleware implements IMiddleware {
       verify(
         req.headers.authorization.split(" ")[1],
         this.secret,
-        (err: any, payload: { email: string }) => {
+        (err, payload: any) => {
           if (err) {
             next();
           } else if (payload) {
