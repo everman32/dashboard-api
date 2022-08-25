@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { config, DotenvConfigOutput, DotenvParseOutput } from "dotenv";
 import { IConfigService } from "./config-service-interface";
-import { INJECT_TYPES } from "../injected-types";
+import { TYPES } from "../di/types";
 import { ILogger } from "../logger/logger-interface";
 import { inject, injectable } from "inversify";
 
@@ -9,7 +9,7 @@ import { inject, injectable } from "inversify";
 export class ConfigService implements IConfigService {
   private config: DotenvParseOutput;
 
-  constructor(@inject(INJECT_TYPES.ILogger) private logger: ILogger) {
+  constructor(@inject(TYPES.ILogger) private logger: ILogger) {
     const result: DotenvConfigOutput = config();
 
     if (result.error) {

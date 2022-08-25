@@ -4,7 +4,7 @@ import { inject, injectable } from "inversify";
 import "reflect-metadata";
 import { IExceptionFilter } from "./errors/exception-filter-interface";
 import { ILogger } from "./logger/logger-interface";
-import { INJECT_TYPES } from "./injected-types";
+import { TYPES } from "./di/types";
 import { IUserController } from "./users/user-controller-interface";
 import { DatabaseService } from "./database/database-service";
 import { AuthMiddleware } from "./common/auth-middleware";
@@ -18,14 +18,14 @@ export class App {
   port: number;
 
   constructor(
-    @inject(INJECT_TYPES.ILogger) private logger: ILogger,
-    @inject(INJECT_TYPES.IUserController)
+    @inject(TYPES.ILogger) private logger: ILogger,
+    @inject(TYPES.IUserController)
     private userController: IUserController,
-    @inject(INJECT_TYPES.DatabaseService)
+    @inject(TYPES.DatabaseService)
     private databaseService: DatabaseService,
-    @inject(INJECT_TYPES.IExceptionFilter)
+    @inject(TYPES.IExceptionFilter)
     private exceptionFilter: IExceptionFilter,
-    @inject(INJECT_TYPES.IConfigService)
+    @inject(TYPES.IConfigService)
     private configService: IConfigService,
   ) {
     this.app = e();

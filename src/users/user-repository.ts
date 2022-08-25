@@ -1,14 +1,14 @@
 import { UserModel } from "@prisma/client";
 import { inject, injectable } from "inversify";
 import { DatabaseService } from "../database/database-service";
-import { INJECT_TYPES } from "../injected-types";
+import { TYPES } from "../di/types";
 import { User } from "./user-entity";
 import { IUserRepository } from "./user-repository-interface";
 
 @injectable()
 export class UserRepository implements IUserRepository {
   constructor(
-    @inject(INJECT_TYPES.DatabaseService)
+    @inject(TYPES.DatabaseService)
     private databaseService: DatabaseService,
   ) {}
 

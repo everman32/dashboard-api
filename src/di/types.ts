@@ -1,4 +1,4 @@
-export const INJECT_TYPES = {
+export const TYPES = {
   App: Symbol.for("App"),
   ILogger: Symbol.for("ILogger"),
   IUserController: Symbol.for("IUserController"),

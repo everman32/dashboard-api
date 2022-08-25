@@ -7,7 +7,7 @@ import { User } from "./user-entity";
 import { IUserRepository } from "./user-repository-interface";
 import { IUserService } from "./user-service-interface";
 import { UserService } from "./user-service";
-import { INJECT_TYPES } from "../injected-types";
+import { TYPES } from "../di/types";
 
 const ConfigServiceMock: IConfigService = {
   get: jest.fn(),
@@ -25,16 +25,16 @@ let userService: IUserService;
 
 beforeAll(() => {
   container
-    .bind<IConfigService>(INJECT_TYPES.IConfigService)
+    .bind<IConfigService>(TYPES.IConfigService)
     .toConstantValue(ConfigServiceMock);
   container
-    .bind<IUserRepository>(INJECT_TYPES.IUserRepository)
+    .bind<IUserRepository>(TYPES.IUserRepository)
     .toConstantValue(UsersRepositoryMock);
-  container.bind<IUserService>(INJECT_TYPES.IUserService).to(UserService);
+  container.bind<IUserService>(TYPES.IUserService).to(UserService);
 
-  configService = container.get<IConfigService>(INJECT_TYPES.IConfigService);
-  userRepository = container.get<IUserRepository>(INJECT_TYPES.IUserRepository);
-  userService = container.get<IUserService>(INJECT_TYPES.IUserService);
+  configService = container.get<IConfigService>(TYPES.IConfigService);
+  userRepository = container.get<IUserRepository>(TYPES.IUserRepository);
+  userService = container.get<IUserService>(TYPES.IUserService);
 });
 
 let createdUser: UserModel | null;
