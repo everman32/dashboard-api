@@ -2,25 +2,19 @@
   "name": "dashboard-api",
   "version": "1.0.0",
   "description": "",
-  "config": {
-    "start": "dist/main.js",
-    "src": {
-      "path": "src/**/*",
-      "exts": ".ts"
-    }
-  },
-  "main": "%npm_package_config_start%",
+  "main": "dist/main.js",
   "type": "commonjs",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && node %npm_package_config_start%",
+    "start": "npm run build && node dist/main.js",
     "dev": "nodemon",
     "prisma:gen": "npm exec prisma generate",
-    "test": "jest",
-    "test:e2e": "jest --config jest.e2e.config.ts",
-    "lint": "eslint %npm_package_config_src_path% --ext %npm_package_config_src_exts%",
-    "lint:fix": "eslint %npm_package_config_src_path% --ext %npm_package_config_src_exts% --fix",
-    "prit": "prettier --write %npm_package_config_src_path%%npm_package_config_src_exts%",
+    "test": "jest --coverage",
+    "test:e2e": "jest --config jest.e2e.config.ts --coverage",
+    "lint": "eslint src/**/* --ext .ts",
+    "lint:fix": "npm run lint -- --fix",
+    "prit": "prettier --check src/**/*.ts",
+    "prit:fix": "prettier --write src/**/*.ts",
     "prepare": "husky install"
   },
   "author": "Victor Borodyn",
