@@ -6,7 +6,7 @@ import { User } from "./user-entity";
 import { IUserRepository } from "./user-repository-interface";
 import { IUserService } from "./user-service-interface";
 import { UserService } from "./user-service";
-import { INJECT_TYPES } from "../types";
+import { INJECT_TYPES } from "../injected-types";
 
 const ConfigServiceMock: IConfigService = {
   get: jest.fn(),

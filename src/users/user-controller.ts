@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { inject, injectable } from "inversify";
 import { BaseController } from "../common/base-controller";
 import { ILogger } from "../logger/logger-interface";
-import { INJECT_TYPES } from "../types";
+import { INJECT_TYPES } from "../injected-types";
 import { IUserController } from "./user-controller-interface";
 import { UserRegisterDto } from "./dto/user-register-dto";
 import { UserLoginDto } from "./dto/user-login-dto";

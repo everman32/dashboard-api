@@ -4,7 +4,7 @@ import { inject, injectable } from "inversify";
 import "reflect-metadata";
 import { IExceptionFilter } from "./errors/exception-filter-interface";
 import { ILogger } from "./logger/logger-interface";
-import { INJECT_TYPES } from "./types";
+import { INJECT_TYPES } from "./injected-types";
 import { IUserController } from "./users/user-controller-interface";
 import { DatabaseService } from "./database/database-service";
 import { AuthMiddleware } from "./common/auth-middleware";

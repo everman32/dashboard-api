@@ -7,7 +7,7 @@ import { IExceptionFilter } from "./errors/exception-filter-interface";
 import { ExceptionFilter } from "./errors/exception-filter";
 import { ILogger } from "./logger/logger-interface";
 import { LoggerService } from "./logger/logger-service";
-import { INJECT_TYPES } from "./types";
+import { INJECT_TYPES } from "./injected-types";
 import { IUserController } from "./users/user-controller-interface";
 import { UserController } from "./users/user-controller";
 import { IUserRepository } from "./users/user-repository-interface";
