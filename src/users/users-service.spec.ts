@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 import { UserModel } from "@prisma/client";
 import { Container } from "inversify";
 import "reflect-metadata";
@@ -39,7 +40,6 @@ beforeAll(() => {
 let createdUser: UserModel | null;
 
 describe("User Service", () => {
-  const email = "alex@gmail";
   it("createUser", async () => {
     configService.get = jest.fn().mockReturnValueOnce("1");
 
@@ -52,7 +52,7 @@ describe("User Service", () => {
       }),
     );
     createdUser = await userService.createUser({
-      email,
+      email: "alex@gmail.com",
       name: "Alex",
       password: "Alex123",
     });
@@ -64,27 +64,30 @@ describe("User Service", () => {
   it("validateUser - success", async () => {
     userRepository.find = jest.fn().mockReturnValueOnce(createdUser);
     const res = await userService.validateUser({
-      email,
+      email: "alex@gmail.com",
       password: "Alex123",
     });
+
     expect(res).toBeTruthy();
   });
 
   it("validateUser - wrong password", async () => {
     userRepository.find = jest.fn().mockReturnValueOnce(createdUser);
     const res = await userService.validateUser({
-      email,
+      email: "alex@gmail.com",
       password: "Alex12",
     });
+
     expect(res).toBeFalsy();
   });
 
   it("validateUser - wrong user", async () => {
     userRepository.find = jest.fn().mockReturnValueOnce(null);
     const res = await userService.validateUser({
-      email,
-      password: "Alex12",
+      email: "alex@gmail.com",
+      password: "Alex123",
     });
+
     expect(res).toBeFalsy();
   });
 });
