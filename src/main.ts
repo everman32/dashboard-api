@@ -43,14 +43,14 @@ export interface IBootstrapReturn {
   app: App;
 }
 
-const bootstrap = (): IBootstrapReturn => {
+const bootstrap = async (): Promise<IBootstrapReturn> => {
   const appContainer = new Container();
   appContainer.load(appBindings);
 
   const app = appContainer.get<App>(INJECT_TYPES.App);
-  app.init();
+  await app.init();
 
   return { app, appContainer };
 };
 
-export const { app, appContainer } = bootstrap();
+export const boot = bootstrap();
