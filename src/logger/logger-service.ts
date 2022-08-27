@@ -8,10 +8,8 @@ export class LoggerService implements ILogger {
 
   constructor() {
     this.logger = new Logger({
-      displayInstanceName: false,
-      displayLoggerName: false,
-      displayFilePath: "hidden",
       displayFunctionName: false,
+      displayFilePath: "hidden",
     });
   }
 
