@@ -20,7 +20,11 @@ export class ConfigService implements IConfigService {
     }
   }
 
-  get(key: string): string {
+  getString(key: string): string {
     return this.config[key];
+  }
+
+  getNumber(key: string): number {
+    return Number(this.getString(key));
   }
 }

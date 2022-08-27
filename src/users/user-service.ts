@@ -22,8 +22,7 @@ export class UserService implements IUserService {
     password,
   }: UserRegisterDto): Promise<UserModel | null> {
     const newUser = new User(email, name);
-    const salt = this.configService.get("SALT");
-    await newUser.setPassword(password, Number(salt));
+    await newUser.setPassword(password, this.configService.getNumber("SALT"));
 
     const existedUser = await this.userRepository.find(email);
     if (existedUser) {

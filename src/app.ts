@@ -29,7 +29,7 @@ export class App {
     private configService: IConfigService,
   ) {
     this.app = e();
-    this.port = 8000;
+    this.port = this.configService.getNumber("PORT");
   }
 
   useRoutes(): void {
@@ -38,7 +38,7 @@ export class App {
 
   useMiddlewares(): void {
     this.app.use(json());
-    const authMiddleware = new AuthMiddleware(this.configService.get("SECRET"));
+      this.configService.getString("SECRET"),
     this.app.use(authMiddleware.execute.bind(authMiddleware));
   }
 

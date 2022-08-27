@@ -10,7 +10,8 @@ import { UserService } from "./user-service";
 import { TYPES } from "../di/types";
 
 const ConfigServiceMock: IConfigService = {
-  get: jest.fn(),
+  getNumber: jest.fn(),
+  getString: jest.fn(),
 };
 
 const UsersRepositoryMock: IUserRepository = {
@@ -41,7 +42,8 @@ let createdUser: UserModel | null;
 
 describe("User Service", () => {
   it("createUser", async () => {
-    configService.get = jest.fn().mockReturnValueOnce("1");
+    configService.getString = jest.fn().mockReturnValueOnce("1");
+    configService.getNumber = jest.fn().mockReturnValueOnce(1);
 
     userRepository.create = jest.fn().mockImplementationOnce(
       (user: User): UserModel => ({
