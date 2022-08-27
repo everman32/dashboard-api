@@ -1,12 +1,12 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 import { App } from "../src/app";
 import request from "supertest";
-import { bootstrap } from "../src/main";
+import bootstrap from "../src/main";
 
 let application: App;
 
 beforeAll(async () => {
-  const app = await bootstrap();
+  const app = await bootstrap;
   application = app;
 });
 
