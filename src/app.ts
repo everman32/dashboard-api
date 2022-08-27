@@ -1,4 +1,4 @@
-import e, { Express } from "express";
+import express, { Express } from "express";
 import { Server } from "http";
 import { inject, injectable } from "inversify";
 import "reflect-metadata";
@@ -28,7 +28,7 @@ export class App {
     @inject(TYPES.IConfigService)
     private configService: IConfigService,
   ) {
-    this.app = e();
+    this.app = express();
     this.port = this.configService.getNumber("PORT");
   }
 
@@ -38,7 +38,10 @@ export class App {
 
   useMiddlewares(): void {
     this.app.use(json());
+
+    const authMiddleware = new AuthMiddleware(
       this.configService.getString("SECRET"),
+    );
     this.app.use(authMiddleware.execute.bind(authMiddleware));
   }
 
@@ -50,8 +53,10 @@ export class App {
     this.useMiddlewares();
     this.useRoutes();
     this.useExceptionFilters();
+
     await this.databaseService.connect();
     this.server = this.app.listen(this.port);
+
     this.logger.log(`Server is running at port ${this.port}`);
   }
 
