@@ -10,10 +10,10 @@ export class AuthMiddleware implements IMiddleware {
       verify(
         req.headers.authorization.split(" ")[1],
         this.secret,
-        (err, payload: any) => {
+        (err, payload) => {
           if (err) {
             next();
-          } else if (payload) {
+          } else if (payload && typeof payload !== "string") {
             req.user = payload.email;
             next();
           }

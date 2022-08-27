@@ -8,4 +8,4 @@ export interface IRoute {
   middlewares?: IMiddleware[];
 }
 
-export type ExpressReturnType = Response<any, Record<string, any>>;
+export type ExpressReturnType = Response<unknown, Record<string, unknown>>;
