@@ -5,7 +5,7 @@ import { ResponseType, IRoute } from "./route-interface";
 @injectable()
 export abstract class BaseController {
   router: Router;
-  constructor(private logger: ILogger) {
+  constructor() {
     this.router = Router();
   }
 

@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { inject, injectable } from "inversify";
 import { BaseController } from "../common/base-controller";
-import { ILogger } from "../logger/logger-interface";
 import { TYPES } from "../di/types";
 import { IUserController } from "./user-controller-interface";
 import { UserRegisterDto } from "./dto/user-register-dto";
@@ -16,11 +15,10 @@ import { sign } from "jsonwebtoken";
 @injectable()
 export class UserController extends BaseController implements IUserController {
   constructor(
-    @inject(TYPES.ILogger) private loggerService: ILogger,
     @inject(TYPES.IUserService) private userService: IUserService,
     @inject(TYPES.IConfigService) private configService: IConfigService,
   ) {
-    super(loggerService);
+    super();
 
     this.bindRoutes([
       {
