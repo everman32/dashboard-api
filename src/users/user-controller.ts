@@ -45,7 +45,7 @@ export class UserController extends BaseController implements IUserController {
   }
 
   async login(
-    req: Request<{}, {}, UserLoginDto>,
+    req: Request<unknown, Record<string, unknown>, UserLoginDto>,
     res: Response,
     next: NextFunction,
   ): Promise<void> {
@@ -61,7 +61,7 @@ export class UserController extends BaseController implements IUserController {
   }
 
   async register(
-    { body }: Request<{}, {}, UserRegisterDto>,
+    { body }: Request<unknown, Record<string, unknown>, UserRegisterDto>,
     res: Response,
     next: NextFunction,
   ): Promise<void> {
