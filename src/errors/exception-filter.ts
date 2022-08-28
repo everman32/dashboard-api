@@ -13,7 +13,7 @@ export class ExceptionFilter implements IExceptionFilter {
     err: Error | HTTPError,
     req: Request,
     res: Response,
-    next: NextFunction,
+    _next: NextFunction,
   ): void {
     if (err instanceof HTTPError) {
       this.logger.error(
