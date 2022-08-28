@@ -48,6 +48,6 @@ export class UserService implements IUserService {
   }
 
   async getUserInfo(email: string): Promise<UserModel | null> {
-    return this.userRepository.find(email);
+    return await this.userRepository.find(email);
   }
 }

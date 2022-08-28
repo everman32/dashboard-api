@@ -13,7 +13,7 @@ export class UserRepository implements IUserRepository {
   ) {}
 
   async create({ email, name, password }: User): Promise<UserModel> {
-    return this.databaseService.client.userModel.create({
+    return await this.databaseService.client.userModel.create({
       data: {
         email,
         name,
@@ -23,7 +23,7 @@ export class UserRepository implements IUserRepository {
   }
 
   async find(email: string): Promise<UserModel | null> {
-    return this.databaseService.client.userModel.findFirst({
+    return await this.databaseService.client.userModel.findFirst({
       where: {
         email,
       },
