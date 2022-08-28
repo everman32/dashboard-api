@@ -17,7 +17,7 @@ export class ExceptionFilter implements IExceptionFilter {
   ): void {
     if (err instanceof HTTPError) {
       this.logger.error(
-        `[${err.context}] Error ${err.statusCode}: ${err.message}`,
+        `[${err.context}] Error ${err.statusCode.toString()}: ${err.message}`,
       );
       res.status(err.statusCode).send({ err: err.message });
     } else {
