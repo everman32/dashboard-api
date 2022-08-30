@@ -9,20 +9,20 @@ export abstract class BaseController {
     this.router = Router();
   }
 
-  send<T>(res: Response, code: number, message: T): ResponseType {
+  private send<T>(res: Response, code: number, message: T): ResponseType {
     res.type("application/json");
     return res.status(code).json(message);
   }
 
-  ok<T>(res: Response, message: T): ResponseType {
+  protected ok<T>(res: Response, message: T): ResponseType {
     return this.send<T>(res, 200, message);
   }
 
-  created(res: Response): ResponseType {
+  private created(res: Response): ResponseType {
     return res.sendStatus(201);
   }
 
-  bindRoutes(routes: IRoute[]): void {
+  protected bindRoutes(routes: IRoute[]): void {
     routes.forEach((route) => {
       const middleware = route.middlewares?.map((m) => m.execute.bind(m));
       const pipeline = middleware ? [...middleware, route.func] : route.func;
