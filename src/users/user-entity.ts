@@ -24,11 +24,11 @@ export class User {
     return this._password;
   }
 
-  public async setPassword(pass: string, salt: number): Promise<void> {
+  async setPassword(pass: string, salt: number): Promise<void> {
     this._password = await hash(pass, salt);
   }
 
-  public async comparePassword(pass: string): Promise<boolean> {
+  async comparePassword(pass: string): Promise<boolean> {
     return await compare(pass, this._password);
   }
 }

@@ -13,9 +13,9 @@ import { json } from "body-parser";
 
 @injectable()
 export class App {
-  app: Express;
-  server: Server;
-  port: number;
+  private app: Express;
+  private server: Server;
+  private port: number;
 
   constructor(
     @inject(TYPES.ILogger) private logger: ILogger,
@@ -32,11 +32,11 @@ export class App {
     this.port = this.configService.getNumber("PORT");
   }
 
-  useRoutes(): void {
+  private useRoutes(): void {
     this.app.use("/users", this.userController.router);
   }
 
-  useMiddlewares(): void {
+  private useMiddlewares(): void {
     this.app.use(json());
 
     const authMiddleware = new AuthMiddleware(
@@ -45,11 +45,11 @@ export class App {
     this.app.use(authMiddleware.execute.bind(authMiddleware));
   }
 
-  useExceptionFilters(): void {
+  private useExceptionFilters(): void {
     this.app.use(this.exceptionFilter.catch.bind(this.exceptionFilter));
   }
 
-  public async init(): Promise<void> {
+  async init(): Promise<void> {
     this.useMiddlewares();
     this.useRoutes();
     this.useExceptionFilters();
@@ -60,7 +60,6 @@ export class App {
     this.logger.log(`Server is running at port ${this.port}`);
   }
 
-  public close(): void {
-    this.server.close();
+  close(): void {
   }
 }

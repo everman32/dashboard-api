@@ -4,7 +4,7 @@ import { ILogger } from "./logger-interface";
 
 @injectable()
 export class LoggerService implements ILogger {
-  public logger: Logger;
+  logger: Logger;
 
   constructor() {
     this.logger = new Logger({
