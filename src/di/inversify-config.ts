@@ -1,7 +1,7 @@
 import { Container, ContainerModule, interfaces } from "inversify";
 import { App } from "../app";
-import { ConfigService } from "../config/config-service";
-import { IConfigService } from "../config/config-service-interface";
+import { EnvService } from "../config/env-service";
+import { IEnvService } from "../config/env-service-interface";
 import { DatabaseService } from "../database/database-service";
 import { ExceptionFilter } from "../errors/exception-filter";
 import { IExceptionFilter } from "../errors/exception-filter-interface";
@@ -30,9 +30,7 @@ const bindings = new ContainerModule((bind: interfaces.Bind) => {
   bind<DatabaseService>(TYPES.DatabaseService)
     .to(DatabaseService)
     .inSingletonScope();
-  bind<IConfigService>(TYPES.IConfigService)
-    .to(ConfigService)
-    .inSingletonScope();
+  bind<IEnvService>(TYPES.IEnvService).to(EnvService).inSingletonScope();
   bind<App>(TYPES.App).to(App).inSingletonScope();
 });
 

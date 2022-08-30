@@ -8,7 +8,7 @@ import { TYPES } from "./di/types";
 import { IUserController } from "./users/user-controller-interface";
 import { DatabaseService } from "./database/database-service";
 import { AuthMiddleware } from "./common/auth-middleware";
-import { IConfigService } from "./config/config-service-interface";
+import { IEnvService } from "./config/env-service-interface";
 import { json } from "body-parser";
 
 @injectable()
@@ -25,8 +25,8 @@ export class App {
     private databaseService: DatabaseService,
     @inject(TYPES.IExceptionFilter)
     private exceptionFilter: IExceptionFilter,
-    @inject(TYPES.IConfigService)
-    private configService: IConfigService,
+    @inject(TYPES.IEnvService)
+    private configService: IEnvService,
   ) {
     this.app = express();
     this.port = this.configService.getNumber("PORT");

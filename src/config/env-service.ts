@@ -1,12 +1,12 @@
 import "dotenv/config";
 import { config, DotenvConfigOutput, DotenvParseOutput } from "dotenv";
-import { IConfigService } from "./config-service-interface";
+import { IEnvService } from "./env-service-interface";
 import { TYPES } from "../di/types";
 import { ILogger } from "../logger/logger-interface";
 import { inject, injectable } from "inversify";
 
 @injectable()
-export class ConfigService implements IConfigService {
+export class EnvService implements IEnvService {
   private config: DotenvParseOutput;
 
   constructor(@inject(TYPES.ILogger) private logger: ILogger) {

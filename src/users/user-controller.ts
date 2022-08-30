@@ -8,7 +8,7 @@ import { UserLoginDto } from "./dto/user-login-dto";
 import { IUserService } from "./user-service-interface";
 import { HTTPError } from "../errors/http-error";
 import { ValidateMiddleware } from "../common/validate-middleware";
-import { IConfigService } from "../config/config-service-interface";
+import { IEnvService } from "../config/env-service-interface";
 import { AuthGuard } from "../common/auth-guard";
 import { sign } from "jsonwebtoken";
 
@@ -16,7 +16,7 @@ import { sign } from "jsonwebtoken";
 export class UserController extends BaseController implements IUserController {
   constructor(
     @inject(TYPES.IUserService) private userService: IUserService,
-    @inject(TYPES.IConfigService) private configService: IConfigService,
+    @inject(TYPES.IEnvService) private configService: IEnvService,
   ) {
     super();
 
