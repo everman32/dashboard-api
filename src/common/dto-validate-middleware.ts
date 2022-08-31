@@ -3,8 +3,12 @@ import { IMiddleware } from "./middleware-interface";
 import { ClassConstructor, plainToClass } from "class-transformer";
 import { validate } from "class-validator";
 
-export class ValidateMiddleware implements IMiddleware {
-  constructor(private classToValidate: ClassConstructor<object>) {}
+export class DtoValidateMiddleware implements IMiddleware {
+  private classToValidate: ClassConstructor<object>;
+
+  constructor(classToValidate: ClassConstructor<object>) {
+    this.classToValidate = classToValidate;
+  }
 
   execute({ body }: Request, res: Response, next: NextFunction): void {
     const instance = plainToClass(this.classToValidate, body);
