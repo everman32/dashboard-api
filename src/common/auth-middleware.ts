@@ -3,7 +3,11 @@ import { IMiddleware } from "./middleware-interface";
 import { verify } from "jsonwebtoken";
 
 export class AuthMiddleware implements IMiddleware {
-  constructor(private secret: string) {}
+  private secret: string;
+
+  constructor(secret: string) {
+    this.secret = secret;
+  }
 
   execute(req: Request, res: Response, next: NextFunction): void {
     if (req.headers.authorization) {
@@ -13,7 +17,8 @@ export class AuthMiddleware implements IMiddleware {
         (err, payload) => {
           if (err) {
             next();
-          } else if (payload && typeof payload !== "string") {
+          }
+          if (payload && typeof payload !== "string") {
             req.user = payload.email;
             next();
           }
