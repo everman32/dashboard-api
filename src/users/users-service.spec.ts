@@ -2,14 +2,14 @@
 import { UserModel } from "@prisma/client";
 import { Container } from "inversify";
 import "reflect-metadata";
-import { IConfigService } from "../config/config-service-interface";
+import { IEnvService } from "../config/env-service-interface";
 import { User } from "./user-entity";
 import { IUserRepository } from "./user-repository-interface";
 import { IUserService } from "./user-service-interface";
 import { UserService } from "./user-service";
 import { TYPES } from "../di/types";
 
-const ConfigServiceMock: IConfigService = {
+const EnvServiceMock: IEnvService = {
   getNumber: jest.fn(),
   getString: jest.fn(),
 };
@@ -20,20 +20,20 @@ const UsersRepositoryMock: IUserRepository = {
 };
 
 const container = new Container();
-let configService: IConfigService;
+let configService: IEnvService;
 let userRepository: IUserRepository;
 let userService: IUserService;
 
 beforeAll(() => {
   container
-    .bind<IConfigService>(TYPES.IConfigService)
-    .toConstantValue(ConfigServiceMock);
+    .bind<IEnvService>(TYPES.IEnvService)
+    .toConstantValue(EnvServiceMock);
   container
     .bind<IUserRepository>(TYPES.IUserRepository)
     .toConstantValue(UsersRepositoryMock);
   container.bind<IUserService>(TYPES.IUserService).to(UserService);
 
-  configService = container.get<IConfigService>(TYPES.IConfigService);
+  configService = container.get<IEnvService>(TYPES.IEnvService);
   userRepository = container.get<IUserRepository>(TYPES.IUserRepository);
   userService = container.get<IUserService>(TYPES.IUserService);
 });

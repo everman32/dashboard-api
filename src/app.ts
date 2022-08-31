@@ -13,7 +13,7 @@ import { json } from "body-parser";
 
 @injectable()
 export class App {
-  private app: Express;
+  app: Express;
   private server: Server;
   private port: number;
 
