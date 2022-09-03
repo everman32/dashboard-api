@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response, Router } from "express";
-import { IMiddleware } from "./middleware-interface";
+import { IMiddleware } from "./middleware/middleware-interface";
 
 export interface IRoute {
   path: string;
