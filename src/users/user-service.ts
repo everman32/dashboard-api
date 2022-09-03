@@ -16,24 +16,28 @@ export class UserService implements IUserService {
     private userRepository: IUserRepository,
   ) {}
 
+  async getUserInfo(email: string): Promise<UserModel | null> {
+    return await this.userRepository.find(email);
+  }
+
   async createUser({
     email,
     name,
     password,
   }: UserRegisterDto): Promise<UserModel | null> {
-    const newUser = new User(email, name);
-    await newUser.setPassword(password, this.configService.getNumber("SALT"));
-
-    const existedUser = await this.userRepository.find(email);
+    const existedUser = await this.getUserInfo(email);
     if (existedUser) {
       return null;
     }
+
+    const newUser = new User(email, name);
+    await newUser.setPassword(password, this.envService.getNumber("SALT"));
 
     return this.userRepository.create(newUser);
   }
 
   async validateUser({ email, password }: UserLoginDto): Promise<boolean> {
-    const existedUser = await this.userRepository.find(email);
+    const existedUser = await this.getUserInfo(email);
     if (!existedUser) {
       return false;
     }
@@ -45,9 +49,5 @@ export class UserService implements IUserService {
     );
 
     return newUser.comparePassword(password);
-  }
-
-  async getUserInfo(email: string): Promise<UserModel | null> {
-    return await this.userRepository.find(email);
   }
 }
