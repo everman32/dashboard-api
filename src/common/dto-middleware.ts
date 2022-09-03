@@ -3,7 +3,7 @@ import { IMiddleware } from "./middleware/middleware-interface";
 import { ClassConstructor, plainToClass } from "class-transformer";
 import { validate } from "class-validator";
 
-export class DtoValidateMiddleware implements IMiddleware {
+export class DtoMiddleware implements IMiddleware {
   private classToValidate: ClassConstructor<object>;
 
   constructor(classToValidate: ClassConstructor<object>) {

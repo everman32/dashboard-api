@@ -7,7 +7,7 @@ import { UserRegisterDto } from "./dto/user-register-dto";
 import { UserLoginDto } from "./dto/user-login-dto";
 import { IUserService } from "./user-service-interface";
 import { HTTPError } from "../errors/http-error";
-import { DtoValidateMiddleware } from "../common/dto-validate-middleware";
+import { DtoMiddleware } from "../common/dto-middleware";
 import { IEnvService } from "../config/env-service-interface";
 import { AuthGuard } from "../common/auth-guard";
 import { sign } from "jsonwebtoken";
@@ -25,13 +25,13 @@ export class UserController extends BaseController implements IUserController {
         path: "/register",
         method: "post",
         func: this.register.bind(this),
-        middlewares: [new DtoValidateMiddleware(UserRegisterDto)],
+        middlewares: [new DtoMiddleware(UserRegisterDto)],
       },
       {
         path: "/login",
         method: "post",
         func: this.login.bind(this),
-        middlewares: [new DtoValidateMiddleware(UserLoginDto)],
+        middlewares: [new DtoMiddleware(UserLoginDto)],
       },
       {
         path: "/info",
