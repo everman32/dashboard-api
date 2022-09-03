@@ -9,23 +9,18 @@ export class AuthMiddleware implements IMiddleware {
     this.secret = secret;
   }
 
-  execute(req: Request, res: Response, next: NextFunction): void {
+  execute(req: Request, _res: Response, next: NextFunction): void {
     if (req.headers.authorization) {
       verify(
         req.headers.authorization.split(" ")[1],
         this.secret,
-        (err, payload) => {
-          if (err) {
-            next();
-          }
+        (_err, payload) => {
           if (payload && typeof payload !== "string") {
             req.user = payload.email;
-            next();
           }
         },
       );
-    } else {
-      next();
     }
+    next();
   }
 }
