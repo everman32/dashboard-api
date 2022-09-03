@@ -7,7 +7,7 @@ import { ILogger } from "./logger/logger-interface";
 import { TYPES } from "./di/types";
 import { IUserController } from "./users/user-controller-interface";
 import { DatabaseService } from "./database/database-service";
-import { AuthMiddleware } from "./common/auth-middleware";
+import { AuthMiddleware } from "./common/middleware/auth-middleware";
 import { IEnvService } from "./config/env-service-interface";
 import { json } from "body-parser";
 

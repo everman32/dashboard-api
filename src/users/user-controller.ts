@@ -7,9 +7,9 @@ import { UserRegisterDto } from "./dto/user-register-dto";
 import { UserLoginDto } from "./dto/user-login-dto";
 import { IUserService } from "./user-service-interface";
 import { HTTPError } from "../errors/http-error";
-import { DtoMiddleware } from "../common/dto-middleware";
+import { DtoMiddleware } from "../common/middleware/dto-middleware";
 import { IEnvService } from "../config/env-service-interface";
-import { AuthGuard } from "../common/auth-guard";
+import { AuthGuard } from "../common/middleware/auth-guard";
 import { sign } from "jsonwebtoken";
 
 @injectable()
