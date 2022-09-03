@@ -49,7 +49,7 @@ export class UserController extends BaseController implements IUserController {
   ): Promise<void> {
     const result = await this.userService.validateUser(req.body);
     if (!result) {
-      return next(new HTTPError(401, "Authorization error", "Login"));
+      return next(new HTTPError(401, "Wrong login or password", "Login"));
     }
     const jwt = await this.signJWT(
       req.body.email,
@@ -70,11 +70,12 @@ export class UserController extends BaseController implements IUserController {
         new HTTPError(422, "This user already exists", "Registration"),
       );
     }
-    this.ok(res, { email: result.email, id: result.id });
+    this.created(res, { id: result.id });
   }
 
   async info({ user }: Request, res: Response): Promise<void> {
     const userInfo = await this.userService.getUserInfo(user);
+
     this.ok(res, { email: userInfo?.email, id: userInfo?.id });
   }
 

@@ -11,7 +11,7 @@ export class ExceptionFilter implements IExceptionFilter {
 
   catch(
     err: Error | HTTPError,
-    req: Request,
+    _req: Request,
     res: Response,
     _next: NextFunction,
   ): void {

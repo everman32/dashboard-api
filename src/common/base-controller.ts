@@ -18,8 +18,8 @@ export abstract class BaseController {
     return this.send<T>(res, 200, message);
   }
 
-  private created(res: Response): ResponseType {
-    return res.sendStatus(201);
+  protected created<T>(res: Response, message: T): ResponseType {
+    return this.send<T>(res, 201, message);
   }
 
   protected bindRoutes(routes: IRoute[]): void {
