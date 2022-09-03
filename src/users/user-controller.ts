@@ -16,7 +16,7 @@ import { sign } from "jsonwebtoken";
 export class UserController extends BaseController implements IUserController {
   constructor(
     @inject(TYPES.IUserService) private userService: IUserService,
-    @inject(TYPES.IEnvService) private configService: IEnvService,
+    @inject(TYPES.IEnvService) private envService: IEnvService,
   ) {
     super();
 
@@ -53,7 +53,7 @@ export class UserController extends BaseController implements IUserController {
     }
     const jwt = await this.signJWT(
       req.body.email,
-      this.configService.getString("SECRET"),
+      this.envService.getString("SECRET"),
     );
     this.ok(res, { jwt });
   }

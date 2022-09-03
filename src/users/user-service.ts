@@ -11,7 +11,7 @@ import { IUserService } from "./user-service-interface";
 @injectable()
 export class UserService implements IUserService {
   constructor(
-    @inject(TYPES.IEnvService) private configService: IEnvService,
+    @inject(TYPES.IEnvService) private envService: IEnvService,
     @inject(TYPES.IUserRepository)
     private userRepository: IUserRepository,
   ) {}
