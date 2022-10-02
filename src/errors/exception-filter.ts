@@ -15,14 +15,17 @@ export class ExceptionFilter implements IExceptionFilter {
     res: Response,
     _next: NextFunction,
   ): void {
-    if (err instanceof HTTPError) {
-      this.logger.error(
-        `[${err.context}] Error ${err.statusCode.toString()}: ${err.message}`,
-      );
-      res.status(err.statusCode).send({ err: err.message });
-    } else {
-      this.logger.error(`${err.message}`);
-      res.status(500).send({ err: err.message });
-    }
+    const log =
+      err.constructor === HTTPError
+        ? {
+            statusCode: err.statusCode,
+            title: err.context,
+          }
+        : {
+            statusCode: 500,
+            title: "Internal error",
+          };
+    this.logger.error(`[${log.statusCode}] ${log.title}: ${err.message}`);
+    res.status(log.statusCode).send({ err: err.message });
   }
 }
