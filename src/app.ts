@@ -26,7 +26,7 @@ export class App {
     @inject(TYPES.IExceptionFilter)
     private exceptionFilter: IExceptionFilter,
     @inject(TYPES.IEnvService)
-    private envService: IEnvService,
+    private envService: IEnvService
   ) {
     this.app = express();
     this.port = this.envService.getNumber("PORT");
@@ -40,7 +40,7 @@ export class App {
     this.app.use(json());
 
     const authMiddleware = new AuthMiddleware(
-      this.envService.getString("SECRET"),
+      this.envService.getString("SECRET")
     );
     this.app.use(authMiddleware.execute.bind(authMiddleware));
   }

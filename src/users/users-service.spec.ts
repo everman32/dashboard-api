@@ -51,7 +51,7 @@ describe("User Service", () => {
         name: user.name,
         password: user.password,
         id: 1,
-      }),
+      })
     );
     createdUser = await userService.createUser({
       email: "alex@gmail.com",

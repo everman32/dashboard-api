@@ -12,7 +12,7 @@ export abstract class BaseController {
   private send<T>(
     res: Response,
     code: number,
-    message: T,
+    message: T
   ): Response<unknown, Record<string, unknown>> {
     res.type("application/json");
     return res.status(code).json(message);
@@ -20,14 +20,14 @@ export abstract class BaseController {
 
   protected sendOk<T>(
     res: Response,
-    message: T,
+    message: T
   ): Response<unknown, Record<string, unknown>> {
     return this.send<T>(res, 200, message);
   }
 
   protected sendCreated<T>(
     res: Response,
-    message: T,
+    message: T
   ): Response<unknown, Record<string, unknown>> {
     return this.send<T>(res, 201, message);
   }

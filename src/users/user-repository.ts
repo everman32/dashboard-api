@@ -9,7 +9,7 @@ import { IUserRepository } from "./user-repository-interface";
 export class UserRepository implements IUserRepository {
   constructor(
     @inject(TYPES.DatabaseService)
-    private databaseService: DatabaseService,
+    private databaseService: DatabaseService
   ) {}
 
   async create({ email, name, password }: User): Promise<UserModel> {

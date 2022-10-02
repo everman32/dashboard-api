@@ -15,7 +15,7 @@ import { AuthResolver } from "../common/middleware/auth-resolver";
 export class UserController extends BaseController implements IUserController {
   constructor(
     @inject(TYPES.IUserService) private userService: IUserService,
-    @inject(TYPES.IEnvService) private envService: IEnvService,
+    @inject(TYPES.IEnvService) private envService: IEnvService
   ) {
     super();
 
@@ -44,7 +44,7 @@ export class UserController extends BaseController implements IUserController {
   async login(
     { body }: Request<unknown, Record<string, unknown>, UserLoginDto>,
     res: Response,
-    next: NextFunction,
+    next: NextFunction
   ): Promise<void> {
     const result = await this.userService.validateUser(body);
     if (!result) {
@@ -53,7 +53,7 @@ export class UserController extends BaseController implements IUserController {
 
     const jwt = this.userService.signJWT(
       body.email,
-      this.envService.getString("SECRET"),
+      this.envService.getString("SECRET")
     );
 
     this.sendOk(res, { jwt });
@@ -62,12 +62,12 @@ export class UserController extends BaseController implements IUserController {
   async register(
     { body }: Request<unknown, Record<string, unknown>, UserRegisterDto>,
     res: Response,
-    next: NextFunction,
+    next: NextFunction
   ): Promise<void> {
     const result = await this.userService.createUser(body);
     if (!result) {
       return next(
-        new HTTPError(422, "This user already exists", "Registration"),
+        new HTTPError(422, "This user already exists", "Registration")
       );
     }
 

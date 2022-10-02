@@ -5,7 +5,7 @@ export class User {
   constructor(
     private readonly _email: string,
     private readonly _name: string,
-    passwordHash?: string,
+    passwordHash?: string
   ) {
     if (passwordHash) {
       this._password = passwordHash;

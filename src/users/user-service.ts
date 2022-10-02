@@ -14,7 +14,7 @@ export class UserService implements IUserService {
   constructor(
     @inject(TYPES.IEnvService) private envService: IEnvService,
     @inject(TYPES.IUserRepository)
-    private userRepository: IUserRepository,
+    private userRepository: IUserRepository
   ) {}
 
   async getUserInfo(email: string): Promise<UserModel | null> {
@@ -46,7 +46,7 @@ export class UserService implements IUserService {
     const newUser = new User(
       existedUser.email,
       existedUser.name,
-      existedUser.password,
+      existedUser.password
     );
 
     return newUser.comparePassword(password);
@@ -61,7 +61,7 @@ export class UserService implements IUserService {
       secret,
       {
         algorithm: "HS256",
-      },
+      }
     );
   }
 }
