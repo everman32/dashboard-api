@@ -1,7 +1,7 @@
 {
   "name": "dashboard-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Application for working with account data (authorization, registration)",
   "main": "dist/main.js",
   "type": "commonjs",
   "scripts": {
@@ -17,6 +17,12 @@
     "prit:fix": "prettier --write src/**/*.ts",
     "prepare": "husky install"
   },
+  "keywords": [
+    "nodejs",
+    "authorization",
+    "registration",
+    "jwt"
+  ],
   "author": "Victor Borodyn",
   "license": "MIT",
   "dependencies": {
