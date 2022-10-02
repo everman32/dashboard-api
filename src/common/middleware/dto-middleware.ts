@@ -2,8 +2,9 @@ import { Request, Response, NextFunction } from "express";
 import { IMiddleware } from "./middleware-interface";
 import { ClassConstructor, plainToClass } from "class-transformer";
 import { validate } from "class-validator";
+import { IHttp } from "../http-interface";
 
-export class DtoMiddleware implements IMiddleware {
+export class DtoMiddleware implements IHttp {
   private classToValidate: ClassConstructor<object>;
 
   constructor(classToValidate: ClassConstructor<object>) {

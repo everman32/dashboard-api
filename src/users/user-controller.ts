@@ -24,20 +24,17 @@ export class UserController extends BaseController implements IUserController {
       {
         path: "/register",
         method: "post",
-        func: this.register.bind(this),
-        middlewares: [new DtoMiddleware(UserRegisterDto)],
+        handlers: [this.register, new DtoMiddleware(UserRegisterDto)],
       },
       {
         path: "/login",
         method: "post",
-        func: this.login.bind(this),
-        middlewares: [new DtoMiddleware(UserLoginDto)],
+        handlers: [this.login, new DtoMiddleware(UserLoginDto)],
       },
       {
         path: "/info",
         method: "get",
-        func: this.info.bind(this),
-        middlewares: [new AuthGuard()],
+        handlers: [this.info, new AuthResolver()],
       },
     ]);
   }

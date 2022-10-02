@@ -1,7 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { IMiddleware } from "./middleware-interface";
 import { verify } from "jsonwebtoken";
+import { IHttp } from "../http-interface";
 
+export class AuthMiddleware implements IHttp {
 export class AuthMiddleware implements IMiddleware {
   private secret: string;
 

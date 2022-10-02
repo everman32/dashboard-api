@@ -1,6 +1,6 @@
 import { Response, Router } from "express";
 import { injectable } from "inversify";
-import { ResponseType, IRoute } from "./route-interface";
+import { IRoute } from "./route-interface";
 
 @injectable()
 export abstract class BaseController {
@@ -24,8 +24,10 @@ export abstract class BaseController {
 
   protected bindRoutes(routes: IRoute[]): void {
     routes.forEach((route) => {
-      const middleware = route.middlewares?.map((m) => m.execute.bind(m));
-      const pipeline = middleware ? [...middleware, route.func] : route.func;
+      const [first, ...others] = route.handlers;
+      const handler = first.bind(this);
+      const middlewares = others?.map((o) => o.execute.bind(o));
+      const pipeline = middlewares ? [...middlewares, handler] : handler;
       this.router[route.method](route.path, pipeline);
     });
   }
