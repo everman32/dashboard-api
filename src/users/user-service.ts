@@ -7,6 +7,7 @@ import { UserRegisterDto } from "./dto/user-register-dto";
 import { User } from "./user-entity";
 import { IUserRepository } from "./user-repository-interface";
 import { IUserService } from "./user-service-interface";
+import { sign } from "jsonwebtoken";
 
 @injectable()
 export class UserService implements IUserService {
@@ -49,5 +50,18 @@ export class UserService implements IUserService {
     );
 
     return newUser.comparePassword(password);
+  }
+
+  signJWT(email: string, secret: string): string | undefined {
+    return sign(
+      {
+        email,
+        iat: Math.floor(Date.now() / 1000),
+      },
+      secret,
+      {
+        algorithm: "HS256",
+      },
+    );
   }
 }

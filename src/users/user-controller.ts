@@ -48,8 +48,9 @@ export class UserController extends BaseController implements IUserController {
     if (!result) {
       return next(new HTTPError(401, "Wrong login or password", "Login"));
     }
-    const jwt = await this.signJWT(
-      req.body.email,
+
+    const jwt = this.userService.signJWT(
+      body.email,
       this.envService.getString("SECRET"),
     );
     this.ok(res, { jwt });
