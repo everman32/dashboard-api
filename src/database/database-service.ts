@@ -15,9 +15,9 @@ export class DatabaseService {
     try {
       await this.client.$connect();
       this.logger.log("Connected to database");
-    } catch (e) {
-      if (e instanceof Error) {
-        this.logger.error(`Failed to connect to database: ${e.message}`);
+    } catch (err) {
+      if (err instanceof Error) {
+        this.logger.error(`Failed to connect to database: ${err.message}`);
       }
     }
   }
