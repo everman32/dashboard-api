@@ -10,7 +10,7 @@ import { HTTPError } from "../errors/http-error";
 import { DtoMiddleware } from "../common/middleware/dto-middleware";
 import { IEnvService } from "../config/env-service-interface";
 import { AuthGuard } from "../common/middleware/auth-guard";
-import { sign } from "jsonwebtoken";
+import { AuthResolver } from "../common/middleware/auth-resolver";
 
 @injectable()
 export class UserController extends BaseController implements IUserController {

@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from "express";
-import { IMiddleware } from "./middleware-interface";
+import { NextFunction, Request, Response } from "express";
+import { IHttp } from "../http-interface";
 
-export class AuthGuard implements IMiddleware {
+export class AuthResolver implements IHttp {
   execute(req: Request, res: Response, next: NextFunction): void {
     if (req.user) {
       return next();
