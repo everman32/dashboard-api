@@ -35,7 +35,7 @@ npm run dev
   Headers:
   Authorization: Bearer your_token
 ```
-*Expect code **200** and email with id or code **401** authorization error message*
+*Expect code **200** and email or code **401** authorization error message*
 
 ### Log in to your account
 ```http
