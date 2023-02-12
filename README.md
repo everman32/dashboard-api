@@ -4,6 +4,8 @@
 
 ![logo](https://i.ibb.co/DQ8rqRS/logo.png)
 
+Application for working with account data (authorization, registration)
+
 ## Installation
 
 Use `npm` as a package manager. Install dependencies from `package.json`:
