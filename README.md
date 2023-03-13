@@ -2,7 +2,7 @@
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/everman32/dashboard-api) [![GitHub stars](https://img.shields.io/github/stars/everman32/dashboard-api)](https://github.com/everman32/dashboard-api/stargazers) [![GitHub forks](https://img.shields.io/github/forks/everman32/dashboard-api)](https://github.com/everman32/dashboard-api/network) [![GitHub issues](https://img.shields.io/github/issues/everman32/dashboard-api)](https://github.com/everman32/dashboard-api/issues) [![GitHub license](https://img.shields.io/github/license/everman32/dashboard-api)](https://github.com/everman32/dashboard-api)
 
-![logo](https://i.ibb.co/DQ8rqRS/logo.png)
+![logo](docs/logo.png)
 
 Application for working with account data (authorization, registration)
 
