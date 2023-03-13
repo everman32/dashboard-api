@@ -1,9 +1,11 @@
-.vscode
-node_modules
-.deepsource.toml
-dist
+node_modules/
+dist/
+coverage/
+
 .env
-.idea
+
+.vscode/
+.idea/
+
 prisma/dev.db
 prisma/dev.db-journal
-coverage
