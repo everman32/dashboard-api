@@ -50,7 +50,7 @@ describe("users e2e", () => {
   it("Info - error", async () => {
     const res = await request(application.app)
       .get("/users/info")
-      .set("Authorization", "Bearer someJWT");
+      .set("Authorization", "none");
 
     expect(res.statusCode).toBe(401);
   });
