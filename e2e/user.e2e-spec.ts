@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 import { App } from "../src/app";
 import request from "supertest";
 import bootstrap from "../src/main";

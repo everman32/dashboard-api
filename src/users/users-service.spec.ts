@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 import { UserModel } from "@prisma/client";
 import { Container } from "inversify";
 import "reflect-metadata";
