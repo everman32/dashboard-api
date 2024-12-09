@@ -4,14 +4,7 @@ import { ILogger } from "./logger-interface";
 
 @injectable()
 export class LoggerService implements ILogger {
-  logger: Logger;
-
-  constructor() {
-    this.logger = new Logger({
-      displayFunctionName: false,
-      displayFilePath: "hidden",
-    });
-  }
+  logger = new Logger();
 
   log(...args: unknown[]): void {
     this.logger.info(...args);
