@@ -26,7 +26,7 @@
   "author": "Victor Borodyn",
   "license": "MIT",
   "dependencies": {
-    "@prisma/client": "^4.2.1",
+    "@prisma/client": "^6.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
     "class-transformer": "^0.5.1",
@@ -52,7 +52,7 @@
     "husky": "^8.0.1",
     "jest": "^28.1.3",
     "prettier": "^3.4.2",
-    "prisma": "^4.2.1",
+    "prisma": "^6.0.1",
     "supertest": "^6.2.4",
     "ts-jest": "^28.0.8",
     "tsx": "^4.19.2",
