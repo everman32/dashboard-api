@@ -11,6 +11,9 @@ const dirname = import.meta.dirname;
 
 export default [
   {
+    files: ["**/*.ts"],
+  },
+  {
     ignores: [
       "**/dist/",
       "**/coverage/",
@@ -39,9 +42,7 @@ export default [
       },
     },
     rules: {
-      "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/no-unused-vars": "warn",
-      "sonarjs/no-invalid-await": "off",
     },
   },
   eslintPluginPrettierRecommended,
